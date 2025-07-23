@@ -1,0 +1,62 @@
+1.	Use k-means clustering to run 2 and 3 clusters of households based on: 
+This analysis aims to segment households based on their purchase behavior using K-Means clustering. Three distinct clustering approaches were applied:
+1.	Purchase Behavior Variables – including volume, frequency, discount usage, and brand loyalty.
+2.	Basis for Purchase Variables – focusing on price and selling proposition.
+3.	Combined Purchase Behavior and Basis for Purchase Variables – integrating both behavioral and pricing factors.
+The dataset BathSoap.csv, consisting of 601 observations and 47 attributes, was used for the analysis. Clustering was performed with 2 and 3 clusters for each approach.
+Data Preprocessing
+Before clustering, the dataset underwent cleaning and preprocessing:
+•	Rows with null values were dropped.
+•	Feature scaling was applied using StandardScaler to ensure unbiased clustering results.
+•	A new column, "maxBrandIndicator", was created to represent brand loyalty, calculated as the maximum value across brand indicators.
+Selected Features for Clustering
+(a) Purchase Behavior Variables
+•	No. of Brands
+•	Brand Runs
+•	Total Volume
+•	No. of Transactions
+•	Value
+•	Transactions per Brand Run
+•	Volume per Transaction
+•	Average Price
+•	Max Brand Indicator (Brand Loyalty)
+(b) Basis for Purchase Variables
+•	Pur Vol No Promo - %
+•	Pur Vol Promo 6 %
+•	Pur Vol Other Promo %
+•	Price Categories: Pr Cat 1, Pr Cat 2, Pr Cat 3, Pr Cat 4
+•	Selling Propositions: PropCat 5, PropCat 14
+(c) Combined Variables
+•	All variables from (a) and (b)
+For each clustering case, K-Means was applied with k=2 and k=3 clusters, and Principal Component Analysis (PCA) was used to reduce dimensionality and visualize the clusters effectively.
+
+a)	The variables that describe purchase behavior (volume, frequency, susceptibility to discounts, and brand loyalty). 
+The clustering analysis segmented households based on transaction behavior, identifying three distinct groups. Cluster 1 consists of high-volume, frequent buyers, representing customers who consistently purchase large quantities. Cluster 2 includes lower-volume, occasional buyers, who make purchases sporadically with minimal transaction frequency. Cluster 3, introduced when using k=3, represents a mid-segment group with moderate transaction behavior, bridging the gap between high and low-volume consumers.
+The PCA visualization in the image effectively displays these clusters in a two-dimensional space, where colors represent different groups. The yellow cluster (Cluster 1) is densely packed, indicating frequent and high-volume transactions. The purple cluster (Cluster 2) is more dispersed, representing occasional buyers. The light green cluster (Cluster 3) falls between the two, indicating a mix of purchasing behaviors. This segmentation is valuable for businesses to tailor marketing strategies, with high-volume buyers targeted for loyalty programs, occasional buyers incentivized with promotions, and moderate consumers nudged toward increased engagement. 
+b)	The variables that describe the basis for purchase (price and selling proposition) 
+The clustering analysis segmented households based on price sensitivity and promotional preferences, resulting in three distinct groups. Cluster 1 consists of price-sensitive buyers who prefer promotions, indicating consumers who actively seek discounts and promotional deals. Cluster 2 includes buyers with a mix of promotional and non-promotional purchases, representing a balanced approach to pricing considerations. Cluster 3, introduced when using k=3, identifies a segment that favors specific price categories, showing consistent purchasing patterns based on price segmentation rather than promotional influence.
+
+The PCA visualization in the image illustrates these clusters in two-dimensional space, with different colors representing distinct consumer groups. The dark blue cluster (Cluster 1) is highly concentrated, showing strong engagement with promotional offers. The light pink cluster (Cluster 2) is more spread out, indicating varied pricing preferences. The yellow cluster (Cluster 3) is distinctly positioned, representing buyers committed to specific price points. This segmentation provides key insights for pricing strategies and promotional campaigns, allowing businesses to target price-sensitive consumers with discounts, engage mixed buyers with flexible pricing strategies, and leverage premium or budget pricing for category-driven consumers. 
+c)	The variables that describe both purchase behavior and basis of purchase
+The clustering analysis segmented households using both purchase behavior and basis for purchase, creating three distinct consumer groups. Cluster 1 consists of high-volume, brand-loyal customers with specific price preferences, representing consumers who consistently purchase in large quantities while favoring certain price points. Cluster 2 includes price-sensitive occasional buyers, who are more likely to purchase when discounts or promotions are available but do so less frequently. Cluster 3, introduced when using k=3, represents moderate buyers with varied preferences, exhibiting a balance between purchase volume, brand loyalty, and price sensitivity.
+The PCA visualization in the image maps these clusters in two-dimensional space, with colors indicating different consumer segments. The purple cluster (Cluster 1) is densely packed, signifying high-volume transactions and brand loyalty. The teal cluster (Cluster 2) is more dispersed, reflecting occasional buyers with stronger price sensitivity. The yellow cluster (Cluster 3) is positioned separately, capturing moderate consumers who exhibit a mix of purchasing behaviors. This segmentation is valuable for targeted marketing strategies, where high-volume loyal customers can receive premium offers, price-sensitive buyers can be targeted with promotional campaigns, and moderate consumers can be nudged toward greater engagement with personalized incentives.
+
+
+
+ Key Findings & Insights:
+The clustering analysis revealed distinct consumer segments based on purchase behavior, price sensitivity, and a combination of both. By applying K-Means clustering with k=3, we identified key household groups that differ in their buying frequency, brand loyalty, and responsiveness to pricing strategies.
+
+Purchase Behavior Segmentation:
+Households were classified based on their transaction patterns, leading to the identification of high-volume frequent buyers, low-volume occasional buyers, and a moderate transaction group. This segmentation highlights the importance of loyalty programs for frequent buyers, discount-driven promotions for occasional buyers, and engagement strategies for mid-tier consumers.
+
+Basis for Purchase Segmentation:
+When segmenting based on price sensitivity and promotions, the analysis identified price-sensitive consumers who prefer discounts, buyers who balance promo and non-promo purchases, and those loyal to specific price categories. These findings suggest that businesses can optimize pricing strategies, using targeted promotions for discount-driven consumers, while maintaining stable pricing structures for customers who prefer specific price ranges.
+Combined Segmentation (Purchase Behavior + Basis for Purchase):
+The most comprehensive segmentation approach integrated both behavioral and price-driven factors, resulting in three well-defined customer groups: high-volume, brand-loyal consumers with specific price preferences, price-sensitive occasional buyers, and moderate buyers with varied preferences. This holistic segmentation provides valuable insights for customized marketing campaigns, where high-volume buyers can be offered exclusive perks, price-sensitive customers can receive targeted promotional offers, and moderate consumers can be nudged toward higher engagement.
+2.	Select what you think is the best clustering and comment on the characteristics (demographic, brand loyalty, and basis for purchase) of these clusters. (This information would be used to guide the development of advertising and promotional campaigns.)
+Based on the clustering analysis, the combined clustering approach provides the most effective segmentation by incorporating both purchase behavior and basis for purchase. This method identifies three distinct customer groups: high-volume, brand-loyal buyers, price-sensitive promo buyers, and moderate buyers with mixed behaviors. High-volume loyal buyers tend to purchase consistently without relying on promotions, making them ideal targets for exclusive memberships, premium product promotions, and experience-driven marketing. Price-sensitive buyers actively seek discounts, requiring seasonal promotions, bundle deals, and targeted affordability-driven campaigns. The mixed-behavior group balances between brand preference and price sensitivity, benefiting from personalized marketing strategies, loyalty incentives, and brand-switching promotions. This segmentation allows businesses to develop tailored advertising and promotional campaigns, ensuring maximum engagement and conversion for each customer type. The combined clustering approach is recommended as it provides a comprehensive understanding of consumer behavior, allowing for strategic marketing efforts that effectively address both brand loyalty and price sensitivity.
+3.	Develop a model that classifies the data into these segments. Since this information would most likely be used in targeting direct-mail promotions, it would be useful to select a market segment that would be defined as a success in the classification model. (use logistic regression)
+We will Use the combined clustering results as the dependent variable, Select relevant features from purchase behavior and basis for purchase as independent variables, •  Encode categorical variables if necessary and .Split the dataset into training and testing sets. Then, we will Fit a logistic regression model to predict a target market segment (Success).The final step is to evaluate the model by Computing accuracy, precision, recall, and confusion matrix.
+ 
+  A logistic regression model was developed to classify customers into segments based on their purchase behavior and basis for purchase. The primary goal was to identify a target market segment ("Success") that can be effectively reached through direct-mail promotions. The model was trained using key features such as transaction frequency, total purchase volume, brand loyalty, and promotional sensitivity, with the target variable defined as whether a customer belongs to the successful segment. After training and evaluation, the model achieved an accuracy of 79%, with an AUC score of 0.84, indicating strong predictive capability. The confusion matrix shows that the model effectively identifies success cases (recall = 84%), ensuring that most high-value customers are correctly classified. However, some misclassification occurs, particularly false positives, which could lead to inefficient marketing spend. The results suggest that logistic regression is a viable approach for segmenting customers for promotional targeting, but further refinements, or alternative classification models (e.g., Random Forest) could improve precision and minimize misclassification. 
+
